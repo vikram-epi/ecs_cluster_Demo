@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Module_Name'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
+properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Terraform-ECS-Fargate'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
 pipeline {
     agent any
     tools {

@@ -36,7 +36,6 @@ pipeline {
         stage('Init') {
             steps {
                 echo "Enter File Name ${params.Module_Name}"
-                echo "Pipeline Name ${params.Pipeline}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform -chdir=Modules/${Module_Name}/ init --lock=false'
                 }

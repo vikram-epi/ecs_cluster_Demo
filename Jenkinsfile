@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: ['Lambda-Function', 'Cloudwatch-Monitoring', 'IAM-Roles', 'EC2-Instance', 'S3-Bucket', 'Glue-Jobs', 'DynamoDB', 'SNS-Topic', 'VPC-Networking'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
+properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
 pipeline {
     agent any
     tools {
@@ -38,7 +38,7 @@ pipeline {
                 echo "Enter File Name ${params.Module_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ init --lock=false'
+                sh 'terraform -chdir=Modules/${Module_Name}/ init --lock=false'
                 }
             }
         }
@@ -49,11 +49,11 @@ pipeline {
                 sh 'terraform get -update'
                 script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name} --lock=false'
+                            sh 'terraform -chdir=Modules/${Module_Name}/ plan'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name} --lock=false'
+                            sh 'terraform -chdir=Modules/${Module_Name}/ apply -auto-approve --lock=false'
                         }   else if (params.Terraform_Action == 'destroy') {
-                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ destroy -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name} --lock=false'
+                            sh 'terraform -chdir=Modules/${Module_Name}/ destroy -auto-approve --lock=false'
                         } else {
                             error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                         }

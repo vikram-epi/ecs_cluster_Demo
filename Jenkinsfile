@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
+properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Module_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
 pipeline {
     agent any
     tools {

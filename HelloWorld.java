@@ -6,13 +6,6 @@ class HelloWorld {
     // Prints "Hello, World" to the terminal window. 
     public static void main(String args[]) 
     {
-        String html = """
-              <html>
-                  <body>
-                      <p>Hello, world</p>
-                  </body>
-              </html>
-              """;
-        System.out.println(html);
+        System.out.println("hello world");
     } 
 }

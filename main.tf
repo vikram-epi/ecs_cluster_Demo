@@ -1,3 +1,3 @@
-module "ECS-Fargate-Cluster" {
-  source = "./Modules/Terraform-ECS-Fargate/" 
+module "Terraform-ECS-Fargate" {
+  source = "./Modules/" 
 }

@@ -32,8 +32,8 @@ pipeline {
         }
         stage('Init') {
             steps {
-                sh"terraform -chdir=./Modules/Terraform-ECS-Fargate/"
-                sh"terraform init --lock=false"
+                sh 'cd /Modules/Terraform-ECS-Fargate/'
+                sh'terraform init --lock=false'
             }
         }
         stage('Action') {

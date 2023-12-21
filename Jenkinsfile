@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'cd ECS-fargate'    
-                echo 'pwd'
+                sh 'echo pwd'
                 sh 'terraform init --lock=false'
                 }
             }

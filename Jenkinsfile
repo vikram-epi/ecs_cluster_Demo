@@ -30,16 +30,27 @@ pipeline {
                 sh"docker push public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
             }
         }
-        stage('Init') {
+        stage('Terraform Plan') {
             steps {
-                sh "terraform init"
+                script {
+                    sh 'terraform plan -out=tfplan'
+                }
             }
         }
-        stage('Plan') {
+        
+        stage('Upload State to S3') {
             steps {
-                sh "terraform plan"
+                script {
+                    sh 'aws s3 cp terraform.tfstate s3://my-ews-baket8780/Modularized/'
+                }
             }
         }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
          
     }
 }

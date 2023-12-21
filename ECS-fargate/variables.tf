@@ -2,6 +2,12 @@
 
 variable "region" {}
 
+#ECS forgate
+variable "bucket" {}
+variable "region" {}
+variable "key" {}
+variable "encrypt" {}  
+
 #EC2-Instance
 
 variable "is_instance_enabled" {}

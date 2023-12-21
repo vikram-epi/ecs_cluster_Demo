@@ -5,5 +5,4 @@ terraform {
     key            = "Modularized/ECS-Fargate/terraform.tfstate"
     encrypt        = true
   }
-  }
 }

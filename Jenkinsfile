@@ -38,7 +38,6 @@ pipeline {
         stage('Action') {
             steps {
                 echo "${params.Terraform_Action}"
-                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update'
                 script {    
                         if (params.Terraform_Action == 'plan') {
@@ -50,7 +49,6 @@ pipeline {
                         } else {
                             error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                         }
-                    }
                 }
             }
         }

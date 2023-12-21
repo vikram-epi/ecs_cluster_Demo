@@ -36,7 +36,7 @@ pipeline {
         stage('Init') {
             steps {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                sh 'terraform -chdir=ECS-fargate/ init --lock=false'
+                sh 'terraform -chdir=./ECS-fargate/ init --lock=false'
                 }
             }
         }
@@ -47,11 +47,11 @@ pipeline {
                 sh 'terraform get -update'
                 script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=Modules/Terraform-ECS-Fargate/ plan'
+                            sh 'terraform -chdir=./Modules/Terraform-ECS-Fargate/ plan'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=Modules/Terraform-ECS-Fargate/ apply -auto-approve --lock=false'
+                            sh 'terraform -chdir=./Modules/Terraform-ECS-Fargate/ apply -auto-approve --lock=false'
                         }   else if (params.Terraform_Action == 'destroy') {
-                            sh 'terraform -chdir=Modules/Terraform-ECS-Fargate/ destroy -auto-approve --lock=false'
+                            sh 'terraform -chdir=./Modules/Terraform-ECS-Fargate/ destroy -auto-approve --lock=false'
                         } else {
                             error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                         }

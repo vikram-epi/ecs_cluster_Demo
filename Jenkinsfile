@@ -32,24 +32,14 @@ pipeline {
         }
         stage('Init') {
             steps {
-                sh "terraform init --lock=false"
+                sh "terraform init"
             }
         }
-        stage('Action') {
+        stage('Init') {
             steps {
-                echo "${params.Terraform_Action}"
-                script {    
-                        if (params.Terraform_Action == 'plan') {
-                            sh "terraform plan"
-                        }   else if (params.Terraform_Action == 'apply') {
-                            sh "terraform apply -auto-approve --lock=false"
-                        }   else if (params.Terraform_Action == 'destroy') {
-                            sh "terraform destroy -auto-approve --lock=false"
-                        } else {
-                            error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
-                        }
-                }
+                sh "terraform plan"
             }
         }
+         
     }
 }

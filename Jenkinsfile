@@ -30,6 +30,13 @@ pipeline {
                 sh"docker push public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
             }
         }
+        stage('Terraform Init') {
+            steps {
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
         stage('Terraform Plan') {
             steps {
                 script {

@@ -37,11 +37,17 @@ pipeline {
                 }
             }
         }
-        
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
         stage('Upload State to S3') {
             steps {
                 script {
-                    sh 'aws s3 cp terraform.tfstate s3://my-ews-baket8780/Modularized/'
+                    sh 'aws s3 cp terraform.tfstate s3://your-bucket-name'
                 }
             }
         }

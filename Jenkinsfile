@@ -32,8 +32,11 @@ pipeline {
         }
         stage('Init') {
             steps {
-                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                sh 'terraform init --lock=false'
+                script {
+                    withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
+                    sh 'terraform init --lock=false'
+                }
+                
                 }
             }
         }

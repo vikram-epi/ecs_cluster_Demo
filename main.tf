@@ -1,4 +1,4 @@
-module "ec2-instance" {
+module "Terraform-ECS-Fargate" {
   source = "./Modules/Terraform-ECS-Fargate/"
 
   

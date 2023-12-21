@@ -38,7 +38,6 @@ pipeline {
         stage('Action') {
             steps {
                 echo "${params.Terraform_Action}"
-                sh 'terraform get -update'
                 script {    
                         if (params.Terraform_Action == 'plan') {
                             sh "terraform plan"

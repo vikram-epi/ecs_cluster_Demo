@@ -32,13 +32,8 @@ pipeline {
         }
         stage('Init') {
             steps {
-                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                    echo "********"
-                    sh "pwd"
-                    sh"terraform -chdir=..Modules/Terraform-ECS-Fargate/"
-                    sh"terraform init --lock=false"
-                
-                }
+                sh"terraform -chdir=./Modules/Terraform-ECS-Fargate/"
+                sh"terraform init --lock=false"
             }
         }
         stage('Action') {

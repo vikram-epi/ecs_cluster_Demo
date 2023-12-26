@@ -15,13 +15,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/vikram-epi/ecs_cluster_Demo.git'
             }
         }
-        stage('Build docker image') {
-            steps {
-                script {
-                    docker.build registry
-                }
-            }
-        }
+        
         stage('Push into ECR') {
             steps {
                 sh"aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g2b6m8b9"
@@ -34,7 +28,7 @@ pipeline {
             steps {
                 script {
                     sh 'terraform init -upgrade'
-                    sh 'terraform init -migrate-state'
+                    sh 'terraform init'
                     sh "terraform plan -input=false -out tfplan"
                     sh 'terraform show -no-color tfplan > tfplan.txt'
                     def plan = readFile 'tfplan.txt'

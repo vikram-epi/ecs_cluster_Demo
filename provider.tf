@@ -1,10 +1,10 @@
 terraform {
-backend "s3" {
+  backend "s3" {
     bucket = "my-ews-baket8780"
     key    = "s3://my-ews-baket8780/Modularized/ECS-Fargate/terraform.tfstate"
     region = "us-east-1"
   }
-  required_providers {
+required_providers {
     aws = {
       version = ">= 2.7.0"
       source  = "hashicorp/aws"

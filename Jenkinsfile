@@ -30,27 +30,28 @@ pipeline {
                 sh"docker push public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
             }
         }
-        stage('Init') {
+        stage('Terraform Init') {
             steps {
-                sh 'terraform init --lock=false'
-            }
-        }
-        stage('Action') {
-            steps {
-                echo "${params.Terraform_Action}"
-                sh 'terraform get -update'
-                script {    
-                        if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=/Modules/Terraform-ECS-Fargate/ plan'
-                        }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=/Modules/Terraform-ECS-Fargate/ apply -auto-approve --lock=false'
-                        }   else if (params.Terraform_Action == 'destroy') {
-                            sh 'terraform -chdir=/Modules/Terraform-ECS-Fargate/ destroy -auto-approve --lock=false'
-                        } else {
-                            error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
-                        }
+                script {
+                    sh 'terraform init'
                 }
             }
         }
+        stage('Terraform Plan') {
+            steps {
+                script {
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
+        
     }
-}
+         
+    }

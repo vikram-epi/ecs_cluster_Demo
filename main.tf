@@ -1,5 +1,3 @@
-module "ec2-instance" {
-  source = "./Modules/Terraform-ECS-Fargate/"
-
-  
+module "Terraform-ECS-Fargate" {
+  source = "./Modules/Terraform-ECS-Fargate" 
 }

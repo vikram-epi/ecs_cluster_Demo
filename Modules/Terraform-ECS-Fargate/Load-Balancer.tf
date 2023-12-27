@@ -1,12 +1,12 @@
 resource "aws_lb" "LB" {
-  name               = "Main-LB"
+  name               = "Main-LB1"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.SG.id]
   subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
 
   tags = {
-    Name = "Main-LB"
+    Name = "Main-LB1"
   }
 }
 

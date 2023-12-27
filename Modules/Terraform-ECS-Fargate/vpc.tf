@@ -1,4 +1,4 @@
-resource "aws_vpc" "vpc" {
+resource "aws_vpc" "vpc1" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "subnet11" {
-  vpc_id                  = aws_vpc.vpc.id
+  vpc_id                  = aws_vpc.vpc1.id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
@@ -19,7 +19,7 @@ resource "aws_subnet" "subnet11" {
 
 
 resource "aws_subnet" "subnet12" {
-  vpc_id                  = aws_vpc.vpc.id
+  vpc_id                  = aws_vpc1.vpc.id
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1b"
@@ -29,8 +29,8 @@ resource "aws_subnet" "subnet12" {
   }
 }
 
-resource "aws_internet_gateway" "IG" {
-  vpc_id = aws_vpc.vpc.id
+resource "aws_internet_gateway" "IG1" {
+  vpc_id = aws_vpc.vpc1.id
 
   tags = {
     Name = "Main-Internet-Gateway12"
@@ -38,23 +38,23 @@ resource "aws_internet_gateway" "IG" {
 }
 
 
-resource "aws_route_table" "RT" {
-  vpc_id = aws_vpc.vpc.id
+resource "aws_route_table" "RT1" {
+  vpc_id = aws_vpc.vpc1.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.IG.id
+    gateway_id = aws_internet_gateway.IG1.id
   }
 }
 
 
 resource "aws_route_table_association" "RTA11" {
   subnet_id      = aws_subnet.subnet11.id
-  route_table_id = aws_route_table.RT.id
+  route_table_id = aws_route_table.RT1.id
 }
 
 
 resource "aws_route_table_association" "RTA12" {
   subnet_id      = aws_subnet.subnet12.id
-  route_table_id = aws_route_table.RT.id
+  route_table_id = aws_route_table.RT1.id
 }
 

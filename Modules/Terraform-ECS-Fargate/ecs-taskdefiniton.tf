@@ -1,4 +1,4 @@
-resource "aws_ecs_task_definition" "TD" {
+resource "aws_ecs_task_definition" "TD1" {
   family                   = "Nginx-TD"
   requires_compatibilities = ["FARGATE"]
   execution_role_arn       = aws_iam_role.iam-role.arn

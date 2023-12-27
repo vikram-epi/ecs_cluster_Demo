@@ -34,11 +34,7 @@ pipeline {
             steps {
                 script {
                     sh 'terraform init'
-                    sh "terraform plan -input=false -out tfplan"
-                    sh 'terraform show -no-color tfplan > tfplan.txt'
-                    def plan = readFile 'tfplan.txt'
-                    def returnCode = sh(script: 'grep "Your infrastructure matches the configuration" tfplan.txt', returnStdout: true, returnStatus: true)
-                    sh "terraform destroy --auto-approve"                                                                                  
+                    sh 'terraform ${Terraform_Action} --auto-approve'                                                                                  
                 }
             }
         }

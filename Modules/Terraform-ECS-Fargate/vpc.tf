@@ -2,7 +2,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "Main-VPC"
+    Name = "Main-VPC1"
   }
 }
 
@@ -48,13 +48,13 @@ resource "aws_route_table" "RT" {
 
 
 resource "aws_route_table_association" "RTA12" {
-  subnet_id      = aws_subnet.subnet1.id
+  subnet_id      = aws_subnet.subnet11.id
   route_table_id = aws_route_table.RT.id
 }
 
 
 resource "aws_route_table_association" "RTA12" {
-  subnet_id      = aws_subnet.subnet2.id
+  subnet_id      = aws_subnet.subnet12.id
   route_table_id = aws_route_table.RT.id
 }
 

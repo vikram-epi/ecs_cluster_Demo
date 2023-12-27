@@ -33,8 +33,21 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    sh 'terraform init'
-                    sh 'terraform ${Terraform_Action}'                                                                                  
+                    sh 'terraform init'                                                                                  
+                }
+            }
+        }
+        stage('Terraform plan') {
+            steps {
+                script {
+                    sh 'terraform plan'                                                                                
+                }
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                script {
+                    sh 'terraform apply --auto-approve'                                                                                 
                 }
             }
         }

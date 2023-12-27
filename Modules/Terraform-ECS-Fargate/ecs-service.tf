@@ -1,5 +1,5 @@
 resource "aws_ecs_service" "ECS-Service" {
-  name                               = "First-Service"
+  name                               = "First-Service1"
   launch_type                        = "FARGATE"
   platform_version                   = "LATEST"
   cluster                            = aws_ecs_cluster.ECS.id
@@ -13,7 +13,7 @@ resource "aws_ecs_service" "ECS-Service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.TG.arn
-    container_name   = "main-container"
+    container_name   = "main-container1"
     container_port   = 80
   }
 

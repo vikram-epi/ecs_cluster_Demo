@@ -1,4 +1,4 @@
-resource "aws_ecs_cluster" "ECS" {
+resource "aws_ecs_cluster" "ECS1" {
   name = "Main-Cluster1"
 
   tags = {

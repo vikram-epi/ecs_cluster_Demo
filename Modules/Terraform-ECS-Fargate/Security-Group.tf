@@ -1,5 +1,5 @@
 resource "aws_security_group" "SG" {
-  name        = "Main-SG"
+  name        = "Main-SG1"
   description = "Allow Port 80"
   vpc_id      = aws_vpc.vpc.id
 
@@ -18,6 +18,6 @@ resource "aws_security_group" "SG" {
   }
 
   tags = {
-    Name = "Main-SG"
+    Name = "Main-SG1"
   }
 }

@@ -23,6 +23,6 @@ resource "aws_ecs_task_definition" "TD1" {
 }
 
 
-data "aws_ecs_task_definition" "TD" {
-  task_definition = aws_ecs_task_definition.TD.family
+data "aws_ecs_task_definition" "TD1" {
+  task_definition = aws_ecs_task_definition.TD1.family
 }

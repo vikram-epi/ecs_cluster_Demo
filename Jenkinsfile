@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
+                cleanWs()
                 git branch: 'main', url: 'https://github.com/vikram-epi/ecs_cluster_Demo.git'
             }
         }

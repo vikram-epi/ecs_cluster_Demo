@@ -33,18 +33,8 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    sh 'terraform init'
-                    sh "terraform plan -input=false -out tfplan"
-                    sh 'terraform show -no-color tfplan > tfplan.txt'
-                    def plan = readFile 'tfplan.txt'
-                    def returnCode = sh(script: 'grep "Your infrastructure matches the configuration" tfplan.txt', returnStdout: true, returnStatus: true)
-                    if (returnCode == 1) {
-                    timeout(time: 10, unit: 'MINUTES') {
-                    input message: "Do you want to destroy the plan?",
-                          parameters: [text(name: 'destroy', description: 'Please review the plan', defaultValue: destroy)]
-                                    }
-                                    sh "terraform destroy --auto-approve"
-                                }                                                                                  
+                    sh 'terraform destroy --auto-approve'
+                                                                                                     
                 }
             }
         }

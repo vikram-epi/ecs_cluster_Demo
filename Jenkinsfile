@@ -43,7 +43,7 @@ pipeline {
                     input message: "Do you want to apply the plan?",
                           parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                                     }
-                                    sh "terraform apply --auto-approve"
+                                    sh "terraform destroy --auto-approve"
                                 }                                                                                  
                 }
             }

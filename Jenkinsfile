@@ -33,7 +33,6 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    sh"cd .\ecs-hello-world\terraform\accounts\dev\ecs"
                     sh 'terraform init'
                     sh "terraform plan -input=false -out tfplan"
                     sh 'terraform show -no-color tfplan > tfplan.txt'

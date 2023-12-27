@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     sh 'terraform init'
-                    sh 'terraform ${Terraform_Action} --auto-approve'                                                                                  
+                    sh 'terraform ${Terraform_Action}'                                                                                  
                 }
             }
         }

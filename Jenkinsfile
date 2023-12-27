@@ -31,12 +31,6 @@ pipeline {
                 sh"docker push public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
             }
         }
-        stage('destroy') {
-            steps {
-                sh 'terraform init'
-                sh 'terraform destroy --auto-approve'
-            }
-        }
         stage('Terraform Init') {
             steps {
                 script {

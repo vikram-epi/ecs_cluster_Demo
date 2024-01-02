@@ -1,4 +1,4 @@
-resource "aws_ecs_task_definition" "TD1" {
+resource "aws_ecs_task_definition" "TD2" {
   family                   = "Nginx-TD"
   requires_compatibilities = ["FARGATE"]
   execution_role_arn       = aws_iam_role.iam-role.arn
@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "TD1" {
   memory                   = 2048
   container_definitions = jsonencode([
     {
-      name      = "main-container1"
+      name      = "main-container2"
       image     = "public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
       cpu       = 1024
       memory    = 2048
@@ -23,6 +23,6 @@ resource "aws_ecs_task_definition" "TD1" {
 }
 
 
-data "aws_ecs_task_definition" "TD1" {
-  task_definition = aws_ecs_task_definition.TD1.family
+data "aws_ecs_task_definition" "TD2" {
+  task_definition = aws_ecs_task_definition.TD2.family
 }

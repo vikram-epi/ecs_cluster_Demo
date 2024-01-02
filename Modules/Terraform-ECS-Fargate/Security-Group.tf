@@ -1,7 +1,7 @@
-resource "aws_security_group" "SG1" {
-  name        = "Main-SG1"
+resource "aws_security_group" "SG2" {
+  name        = "Main-SG2"
   description = "Allow Port 80"
-  vpc_id      = aws_vpc.Main-VPC1.id
+  vpc_id      = aws_vpc.Main-VPC2.id
 
   ingress {
     from_port   = 80
@@ -18,6 +18,6 @@ resource "aws_security_group" "SG1" {
   }
 
   tags = {
-    Name = "Main-SG1"
+    Name = "Main-SG2"
   }
 }

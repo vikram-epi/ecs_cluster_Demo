@@ -1,5 +1,5 @@
-bucket         	   = "hello-world-terraform-state-morrisons-demo"
+bucket         	   = "hello-world-terraform-state-morrisons-demo1"
     key              	   = "state/terraform.tfstate"
     region         	   = "us-east-1"
     encrypt        	   = true
-    dynamodb_table = "hello-world-state-locks-ms-demo"
+    dynamodb_table = "hello-world-state-locks-ms-demo1"

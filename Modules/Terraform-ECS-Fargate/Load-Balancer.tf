@@ -1,5 +1,5 @@
 resource "aws_lb" "LB2" {
-  name               = "LB2"
+  name               = "Main-LB2"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.SG2.id]
@@ -11,7 +11,7 @@ resource "aws_lb" "LB2" {
 }
 
 resource "aws_alb_listener" "Listener" {
-  load_balancer_arn = aws_lb.LB2.id
+  load_balancer_arn = aws_lb.Main-LB2.id
   port              = "80"
   protocol          = "HTTP"
 

@@ -48,12 +48,12 @@ resource "aws_route_table" "RT111" {
 
 
 resource "aws_route_table_association" "RTA111" {
-  subnet_id      = aws_subnet.Subnet111.id
+  subnet_id      = aws_subnet.subnet111.id
   route_table_id = aws_route_table.RT111.id
 }
 
 
 resource "aws_route_table_association" "RTA112" {
-  subnet_id      = aws_subnet.Subnet112.id
+  subnet_id      = aws_subnet.subnet112.id
   route_table_id = aws_route_table.RT112.id
 }

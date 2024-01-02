@@ -16,7 +16,7 @@ resource "aws_alb_listener" "Listener" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_lb_target_group.TG2.id
+    target_group_arn = aws_lb_target_group.Main-TG2.id
     type             = "forward"
   }
 }

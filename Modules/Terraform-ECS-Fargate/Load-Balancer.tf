@@ -19,8 +19,4 @@ resource "aws_alb_listener" "Listener" {
     target_group_arn = aws_lb_target_group.Main-TG3.id
     type             = "forward"
   }
-
-output "elb_dns_name" {
-  value = aws_lb.Main-LB3.dns_name
-}
 }

@@ -12,7 +12,7 @@ resource "aws_ecs_service" "ECS-Service1" {
 
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.Main-TG2.arn
+    target_group_arn = aws_lb_target_group.Main-TG3.arn
     container_name   = "main-container2"
     container_port   = 80
   }

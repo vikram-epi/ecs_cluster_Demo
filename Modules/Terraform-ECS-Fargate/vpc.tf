@@ -46,6 +46,14 @@ resource "aws_route_table" "RT111" {
   }
 }
 
+resource "aws_route_table" "RT112" {
+  vpc_id = aws_vpc.Main-VPC2.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.IG2.id
+  }
+}
+
 
 resource "aws_route_table_association" "RTA111" {
   subnet_id      = aws_subnet.subnet111.id

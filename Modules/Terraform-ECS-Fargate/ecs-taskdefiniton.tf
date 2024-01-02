@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "TD1" {
   memory                   = 2048
   container_definitions = jsonencode([
     {
-      name      = "main-container"
+      name      = "main-container1"
       image     = "public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
       cpu       = 1024
       memory    = 2048

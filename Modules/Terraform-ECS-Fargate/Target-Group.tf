@@ -1,11 +1,11 @@
-resource "aws_lb_target_group" "TG1" {
-  name        = "Main-TG1"
+resource "aws_lb_target_group" "TG2" {
+  name        = "Main-TG2"
   port        = "80"
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = aws_vpc.Main-VPC1.id
+  vpc_id      = aws_vpc.Main-VPC2.id
 
   tags = {
-    Name = "Main-TG1"
+    Name = "Main-TG2"
   }
 }

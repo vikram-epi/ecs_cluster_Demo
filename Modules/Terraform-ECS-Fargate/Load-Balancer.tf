@@ -2,7 +2,7 @@ resource "aws_lb" "Main-LB3" {
   name               = "Main-LB3"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.SG2.id]
+  security_groups    = [aws_security_group.SG3.id]
   subnets            = [aws_subnet.subnet111.id, aws_subnet.subnet112.id]
 
   tags = {
@@ -19,4 +19,8 @@ resource "aws_alb_listener" "Listener" {
     target_group_arn = aws_lb_target_group.Main-TG3.id
     type             = "forward"
   }
+
+output "elb_dns_name" {
+  value = aws_lb.Main-LB3.dns_name
+}
 }

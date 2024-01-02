@@ -1,4 +1,4 @@
-resource "aws_lb" "LB2" {
+resource "aws_lb" "Main-LB2" {
   name               = "Main-LB2"
   internal           = false
   load_balancer_type = "application"

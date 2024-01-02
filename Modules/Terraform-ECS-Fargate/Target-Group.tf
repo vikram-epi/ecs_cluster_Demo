@@ -1,4 +1,4 @@
-resource "aws_lb_target_group" "TG2" {
+resource "aws_lb_target_group" "Main-TG2" {
   name        = "Main-TG2"
   port        = "80"
   protocol    = "HTTP"
